@@ -12,10 +12,10 @@ def AjustaDF (df, nome):
 #funcao para extrair dados das series temporaris do Bacen
 def bacen (cod, nome = 'V'):
     url = 'http://api.bcb.gov.br/dados/serie/bcdata.sgs.' + str(cod) + '/dados?formato=json'
-    print(url)
+    #print(url)
     req = requests.get(url)
     df = pd.read_json(req.content)
-    print('importacao de dados ok!')
+    print(f'{nome} Tabela {str(cod)}: importacao de dados ok!')
     
     df.set_index('data', inplace=True)
     df.rename(index=str, columns={"valor": str(nome)}, inplace=True)
@@ -52,10 +52,10 @@ def ibge (t, p = 'all', v = 'all', ter = 'br', n = '/n1/1', f = 'a', h = 'n', c 
     detalhes = str(c)
     
     url = api + tabela + periodo + variaveis + territorio + formato + header + detalhes
-    print(url)
+    #print(url)
     req = requests.get(url)
     df = pd.read_json(req.content)
-    print('importacao de dados ok!')
+    print(f'{nome} Tabela {str(t)}: importacao de dados ok!')
     
     #arruma layout da tabela
     tab = AjustaDF(df[['D1C', 'V']], nome)
