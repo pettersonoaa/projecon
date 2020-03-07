@@ -79,5 +79,6 @@ dataset_bacen = cambiorf.join(cambio).join(receita).join(despesa)
 
 # JOIN
 dataset = dataset_ibge.join(dataset_bacen).loc['01/01/2000':]
+dataset.index = pd.to_datetime(dataset.index)
 dataset.info()
 dataset.tail()
