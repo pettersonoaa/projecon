@@ -1,2 +1,2 @@
 # projecon
-api para projecao de vars macroeconomics
+api para projecao de vars macroeconomicas
