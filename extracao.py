@@ -78,7 +78,8 @@ despesa = bacen(22760, nome='despesa') #despesa de cartoes - gasto de brasileiro
 dataset_bacen = cambiorf.join(cambio).join(receita).join(despesa)
 
 # JOIN
-dataset = dataset_ibge.join(dataset_bacen).loc['01/01/2000':]
+dataset = dataset_ibge.join(dataset_bacen).loc['01/01/2013':]
+dataset.index = dataset.reset_index()['data'].apply(lambda x: datetime.strptime(str(x), '%d/%m/%Y').strftime('%Y-%m-%d'))
 dataset.index = pd.to_datetime(dataset.index)
 dataset.sort_index(inplace=True)
 dataset.info()
